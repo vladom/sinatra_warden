@@ -70,14 +70,15 @@ module Sinatra
       app.helpers Warden::Helpers
 
       # Enable Sessions
-      app.set :sessions, true
+      # disabled
+      # app.set :sessions, true
 
-      app.set :auth_failure_path, '/'
-      app.set :auth_success_path, '/'
+      app.set :auth_failure_path, '/login'
+      app.set :auth_success_path, '/home'
       # Setting this to true will store last request URL
       # into a user's session so that to redirect back to it
       # upon successful authentication
-      app.set :auth_use_referrer, false
+      app.set :auth_use_referrer, true
 
       app.set :auth_error_message,   "Could not log you in."
       app.set :auth_success_message, "You have logged in successfully."
@@ -90,7 +91,7 @@ module Sinatra
       app.post '/unauthenticated/?' do
         status 401
         warden.custom_failure! if warden.config.failure_app == self.class
-        env['x-rack.flash'][:error] = options.auth_error_message if defined?(Rack::Flash)
+        env['x-rack.flash'][:error] = options.auth_error_message
         self.send(options.auth_template_renderer, options.auth_login_template)
       end
 
@@ -107,7 +108,7 @@ module Sinatra
       app.get '/oauth_callback/?' do
         if options.auth_use_oauth
           authenticate
-          env['x-rack.flash'][:success] = options.auth_success_message if defined?(Rack::Flash)
+          env['x-rack.flash'][:success] = options.auth_success_message
           redirect options.auth_success_path
         else
           redirect options.auth_failure_path
@@ -116,7 +117,7 @@ module Sinatra
 
       app.post '/login/?' do
         authenticate
-        env['x-rack.flash'][:success] = options.auth_success_message if defined?(Rack::Flash)
+        env['x-rack.flash'][:success] = options.auth_success_message
         redirect options.auth_use_referrer && session[:return_to] ? session.delete(:return_to) : 
                  options.auth_success_path
       end
@@ -124,7 +125,7 @@ module Sinatra
       app.get '/logout/?' do
         authorize!
         logout
-        env['x-rack.flash'][:success] = options.auth_success_message if defined?(Rack::Flash)
+        env['x-rack.flash'][:success] = options.auth_success_message
         redirect options.auth_success_path
       end
     end

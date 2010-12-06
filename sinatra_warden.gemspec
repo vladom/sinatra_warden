@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   
   s.add_dependency 'sinatra', '>= 1.1.0'
   s.add_dependency 'warden',  '~> 1.0'
+  s.add_dependency 'rack-flash', '~> 0.1.1'
   
   s.add_development_dependency 'rspec', '~> 2.0.0'
   s.add_development_dependency 'yard', '>= 0.5.4'
@@ -33,7 +34,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'dm-migrations', '~> 1.0.2'
   s.add_development_dependency 'bcrypt-ruby'
   s.add_development_dependency 'haml'
-  s.add_development_dependency 'rack-flash', '~> 0.1.1'
   
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
