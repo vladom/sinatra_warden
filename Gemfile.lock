@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     sinatra_warden (0.3.2)
-      sinatra (>= 1.0.0)
+      sinatra (>= 1.1.0)
       warden (~> 1.0)
 
 GEM
@@ -12,6 +12,7 @@ GEM
     bcrypt-ruby (2.1.2)
     data_objects (0.10.2)
       addressable (~> 2.1)
+    diff-lcs (1.1.2)
     dm-core (1.0.2)
       addressable (~> 2.2)
       extlib (~> 0.9.15)
@@ -26,7 +27,7 @@ GEM
     do_sqlite3 (0.10.2)
       data_objects (= 0.10.2)
     extlib (0.9.15)
-    haml (3.0.23)
+    haml (3.0.24)
     rack (1.2.1)
     rack-flash (0.1.1)
       rack
@@ -34,31 +35,40 @@ GEM
       rack (>= 1.0)
     rake (0.8.7)
     rcov (0.9.9)
-    rspec (1.2.9)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
+      diff-lcs (>= 1.1.2)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
     tilt (1.1)
-    warden (1.0.1)
+    warden (1.0.2)
       rack (>= 1.0.0)
-    yard (0.6.1)
+    yard (0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bcrypt-ruby
-  dm-core (~> 1.0)
-  dm-migrations
-  dm-sqlite-adapter
-  do_sqlite3 (~> 0.10.0)
+  dm-core (~> 1.0.2)
+  dm-do-adapter (~> 1.0.2)
+  dm-migrations (~> 1.0.2)
+  dm-sqlite-adapter (~> 1.0.2)
   haml
   rack-flash (~> 0.1.1)
   rack-test (~> 0.5.0)
   rake
   rcov
-  rspec (~> 1.2.9)
-  sinatra (>= 1.0.0)
+  rspec (~> 2.0.0)
+  sinatra (>= 1.1.0)
   sinatra_warden!
   warden (~> 1.0)
   yard (>= 0.5.4)
